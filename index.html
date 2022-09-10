@@ -40,6 +40,23 @@
 
             <p class="fs-5 bg-info w-50 py-2 my-4 fs-bolder px-3"><span id="no-of-news"></span> News Found </p>
 
+            <section>
+              <div class="row justify-content-between">
+                <div class="col-sm-12 col-lg-4 d-flex justify-content-between">
+                  <h5>Sort By View: </h5>
+                  <select class="form-select w-50 " value="Default" aria-label="Default select example">
+                    <option selected>Default</option>
+                    <option value="1">Low to High</option>
+                    <option value="3">High to Low</option>
+                  </select>
+                </div>
+                <div class="col-sm-12 col-lg-4 text-end">
+                  <button type="button" class="btn btn-danger">Today's Pick</button>
+                  <button type="button" class="btn btn-light">Trending</button>
+                </div>
+              </div>
+            </section>
+
             <div id="news-container" class="card mt-4 mb-3">
             </div>
     </main>
