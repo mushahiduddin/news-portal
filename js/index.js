@@ -71,6 +71,10 @@ const displayCategoryWiseNews = (data) => {
                             <i class="fa-solid text-warning fa-star"></i>
                             <i class="fa-solid text-dark fa-star"> ${details.rating.number}</i>
                         </div>
+                        <!-- Button trigger modal -->
+                        <div class="col-sm-2">
+                            <i onclick="modalInformation('${details._id}')" class="fa-solid fs-4 fa-arrow-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> </i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,8 +82,34 @@ const displayCategoryWiseNews = (data) => {
     </div>
   `;
         newsDetails.appendChild(div);
-
     });
 }
+
+const modalInformation = (news_id) => {
+        const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displayDetails(data.data[0]));
+    }
+    
+    const displayDetails = details =>{
+        const detailContainer = document.getElementById('modal-body');
+        detailContainer.innerHTML = ``;
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `
+        <img src="${details.image_url}" class="card-img-top" alt="...">
+        <strong class="mt-4">Title: ${details.title}</strong>
+            <ul id="category-menu" class="d-block my-4 list-unstyled my-3">
+            <li>Catagory Id: ${details.category_id}</li>
+            <li>Author Name: ${details.author.name ? details.author.name : 'Information not found'}</li>
+            <li>Rating: ${details.rating.number}</li>
+            <li>Badge: ${details.rating.badge}</li>
+            <li>Published Date: ${details.author.published_date}</li>
+            </ul>
+        `;
+        detailContainer.appendChild(div);
+    }
+        
 loadCategoryWiseNews('08')
 loadAllNewsCategory();
