@@ -16,7 +16,7 @@ const displayAllNewsCategory = async() =>{
     categories.forEach(category => {
         const li = document.createElement('li');
         li.classList.add('fw-bold');
-        li.innerText = `${category.category_name}
+        li.innerHTML = `${category.category_name}
         `;
         categoryMenu.appendChild(li);
     });  
