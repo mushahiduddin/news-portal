@@ -54,15 +54,15 @@ const displayCategoryWiseNews = (data) => {
          <div class="ps-3 col-md-8">
             <div class="card-body">
                 <h5 class="card-title">${details.title}</h5>
-                <p class="card-text">${details.details}</p>
+                <p class="card-text">${details.details.slice(0, 250) + '...'}</p>
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-sm-4">
                             <img class="img-fluid rounded-circle text-start" height="40px" width="40px"
-                                src="${details.author.img}" alt=""><span>${details.author.name}</span>
+                                src="${details.author.img}" alt=""><span>${details.author.name ? details.author.name : 'Information not found'}</span>
                         </div>
                         <div class="col-sm-2">
-                            <i class="fa-sharp fa-solid fa-eye"><span>${details.total_view}</span></i>
+                            <i class="fa-sharp fa-solid fa-eye"></i><span> ${details.total_view || details.total_view === 0 ? details.total_view : 'Information not found'}</span>
                         </div>
                         <div class="col-sm-4">
                             <i class="fa-solid text-warning fa-star"></i>
