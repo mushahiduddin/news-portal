@@ -6,7 +6,7 @@ const loadAllNewsCategory = async () => {
         displayAllNewsCategory(data.data.news_category.sort());
     }
     catch (error) {
-        return error;
+        console.log('Error in Api Load', error);
     }
 }
 
@@ -33,10 +33,9 @@ const loadCategoryWiseNews = async (id) => {
         displayCategoryWiseNews(data.data.sort(function (a, b) {
             return b.total_view - a.total_view;
         }));
-
     }
-    catch {
-        console.log('There are an error');
+    catch(error) {
+        console.log('Error in Api Load', error);
     }
 };
 
@@ -95,8 +94,9 @@ const displayCategoryWiseNews = (data) => {
 const modalInformation = (news_id) => {
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     fetch(url)
-        .then(res => res.json())
-        .then(data => displayDetails(data.data[0]));
+    .then(res => res.json())
+    .then(data => displayDetails(data.data[0]))
+    .catch(error => console.log('Error in Api Load',error));
 }
 
 // display all categorywise news details section as modal
