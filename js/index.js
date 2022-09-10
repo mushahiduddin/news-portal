@@ -73,7 +73,7 @@ const displayCategoryWiseNews = (data) => {
                         </div>
                         <!-- Button trigger modal -->
                         <div class="col-sm-2">
-                            <i onclick="modalInformation('${details._id}')" class="fa-solid fs-4 fa-arrow-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> </i>
+                            <i onclick="modalInformation('${details._id}')" class="fa-solid fs-4 fa-arrow-right text-info" data-bs-toggle="modal" data-bs-target="#exampleModal"> </i>
                         </div>
                     </div>
                 </div>
