@@ -35,6 +35,11 @@ const loadCategoryWiseNews = async (id) => {
 
 const displayCategoryWiseNews = (data) => {
     console.log(data);
+
+    const noOfNews = data.length;
+    const noOfNewsSection = document.getElementById('no-of-news')
+    noOfNewsSection.innerText = noOfNews;
+
     const newsDetails = document.getElementById('news-container');
     newsDetails.innerHTML = '';
     data.forEach(details => {
