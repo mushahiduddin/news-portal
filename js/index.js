@@ -2,7 +2,7 @@ const loadAllNewsCategory = async () => {
     try {
         const response = await fetch("https://openapi.programming-hero.com/api/news/categories");
         const data = await response.json();
-        displayAllNewsCategory(data.data.news_category);
+        displayAllNewsCategory(data.data.news_category.sort());
     }
     catch (error) {
         return error;
@@ -25,7 +25,9 @@ const loadCategoryWiseNews = async (id) => {
         const url = (`https://openapi.programming-hero.com/api/news/category/${id}`);
         const res = await fetch(url);
         const data = await res.json();
-        displayCategoryWiseNews(data.data);
+        displayCategoryWiseNews(data.data.sort(function (a, b) {
+            return b.total_view - a.total_view;
+        }));
 
     }
     catch {
