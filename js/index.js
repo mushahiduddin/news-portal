@@ -1,3 +1,4 @@
+// load all category section
 const loadAllNewsCategory = async () => {
     try {
         const response = await fetch("https://openapi.programming-hero.com/api/news/categories");
@@ -9,6 +10,7 @@ const loadAllNewsCategory = async () => {
     }
 }
 
+// display all category section
 const displayAllNewsCategory = data => {
     const categoryMenu = document.getElementById('category-menu');
     data.forEach((category) => {
@@ -20,8 +22,11 @@ const displayAllNewsCategory = data => {
     });
 }
 
+// load all categorywise news section
 const loadCategoryWiseNews = async (id) => {
     try {
+        // spiner start
+        toogleSpnier(true);
         const url = (`https://openapi.programming-hero.com/api/news/category/${id}`);
         const res = await fetch(url);
         const data = await res.json();
@@ -35,9 +40,8 @@ const loadCategoryWiseNews = async (id) => {
     }
 };
 
+// display all categorywise news section
 const displayCategoryWiseNews = (data) => {
-    console.log(data);
-
     const noOfNews = data.length;
     const noOfNewsSection = document.getElementById('no-of-news')
     noOfNewsSection.innerText = noOfNews;
@@ -83,21 +87,25 @@ const displayCategoryWiseNews = (data) => {
   `;
         newsDetails.appendChild(div);
     });
+    //spnier end
+    toogleSpnier(false);
 }
 
+// load all categorywise news details section
 const modalInformation = (news_id) => {
-        const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-        fetch(url)
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    fetch(url)
         .then(res => res.json())
         .then(data => displayDetails(data.data[0]));
-    }
-    
-    const displayDetails = details =>{
-        const detailContainer = document.getElementById('modal-body');
-        detailContainer.innerHTML = ``;
-        const div = document.createElement('div');
-        div.classList.add('card');
-        div.innerHTML = `
+}
+
+// display all categorywise news details section as modal
+const displayDetails = details => {
+    const detailContainer = document.getElementById('modal-body');
+    detailContainer.innerHTML = ``;
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
         <img src="${details.image_url}" class="card-img-top" alt="...">
         <strong class="mt-4">Title: ${details.title}</strong>
             <ul id="category-menu" class="d-block my-4 list-unstyled my-3">
@@ -108,8 +116,19 @@ const modalInformation = (news_id) => {
             <li>Published Date: ${details.author.published_date}</li>
             </ul>
         `;
-        detailContainer.appendChild(div);
+    detailContainer.appendChild(div);
+}
+
+// spnier function
+const toogleSpnier = isLoading => {
+    const loaderSection = document.getElementById('spiner');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none');
     }
-        
+    else {
+        loaderSection.classList.add('d-none');
+    }
+}
+
 loadCategoryWiseNews('08')
 loadAllNewsCategory();
